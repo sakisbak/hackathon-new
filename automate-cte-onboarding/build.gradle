@@ -1,0 +1,36 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.6'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.hackfirst.flamesof5'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(23)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.apache.camel.springboot:camel-spring-boot-starter:4.8.1'
+	implementation 'org.apache.camel:camel-jetty:4.8.1'
+	implementation 'org.apache.camel:camel-kafka:3.20.0'
+	implementation 'org.apache.camel:camel-http:3.20.0'
+	implementation 'org.apache.camel:camel-servlet:3.20.0'
+	implementation 'org.apache.camel:camel-jackson:3.20.0'
+	implementation 'org.springframework.kafka:spring-kafka'
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
