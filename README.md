@@ -1,5 +1,12 @@
 CURL to test on local
-
+INSERT INTO TEMPLATE (id, team_name, access_requests) VALUES
+('1', 'payments-dev', '["splunk-log-access", "gitlab-dev-access"]');
+INSERT INTO TEMPLATE (id, team_name, access_requests) VALUES
+('2', 'payments-qa', '["app-qa-access", "gitlab-access"]');
+INSERT INTO TEMPLATE (id, team_name, access_requests) VALUES
+('3', 'ir-team', '["jira-access", "confluence-access"]');
+INSERT INTO TEMPLATE (id, team_name, access_requests) VALUES
+('4', 'others', '["generic-access"]');
 
 curl --location 'http://localhost:8080/provisionRequest' \
 --header 'Content-Type: application/json' \
