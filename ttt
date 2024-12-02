@@ -1,0 +1,25 @@
+    public void process(org.apache.camel.Exchange exchange) throws Exception {
+        // Extract the team from the incoming message (assuming it's part of the JSON)
+        AccessRequest req = exchange.getIn().getBody(AccessRequest.class);  // Assuming team is the body of the message
+        System.out.println("Team "+ req.getTeam());
+        // Fetch the access requests for the team from the H2 database
+        String query = "SELECT access_requests FROM TEMPLATE WHERE team_name = ?";
+        List<String> accessRequests = jdbcTemplate.queryForList(query, String.class, req.getTeam());
+
+        // Log the access requests retrieved from the database
+        exchange.getIn().setHeader("accessRequests", accessRequests);
+
+        // Check if we have access requests for this team
+        if (accessRequests != null && !accessRequests.isEmpty()) {
+            // Build the SailPoint request for each access request in the list
+            StringBuilder sailPointRequest = new StringBuilder();
+            for (String accessRequest : accessRequests) {
+                sailPointRequest.append(buildSailPointRequest(accessRequest)).append("\n");
+            }
+
+            // Set the full SailPoint request in the body
+            exchange.getIn().setBody(sailPointRequest.toString());
+        } else {
+            exchange.getIn().setBody(null);  // No requests found for this team
+        }
+    }
