@@ -6,7 +6,7 @@ curl --location 'http://localhost:8080/provisionRequest' \
 --data '{
     "empId": "12345",
     "projectName": "Project X",
-    "team": "Development"
+    "team": "payments-dev"
 }'
 
 
