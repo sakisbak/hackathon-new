@@ -1,0 +1,76 @@
+2024-12-02T13:31:54.155+05:30  INFO 28204 --- [automate-cte-onboarding] [nio-8080-exec-1] route2                                   : Sending message to Kafka queue: AccessRequest{empId='12345', projectName='Project X', team='payments-dev'}
+2024-12-02T13:31:54.155+05:30  INFO 28204 --- [automate-cte-onboarding] [nio-8080-exec-1] route3                                   : Received message from mocked Kafka: AccessRequest{empId='12345', projectName='Project X', team='payments-dev'}
+Team payments-dev
+2024-12-02T13:31:54.155+05:30  INFO 28204 --- [automate-cte-onboarding] [nio-8080-exec-1] route3                                   : Sending request to Sailpoint API.. 
+2024-12-02T13:31:54.155+05:30  INFO 28204 --- [automate-cte-onboarding] [nio-8080-exec-1] route4                                   : SailPoint API called, request created for: {
+  "requestedFor": ["2c918084660f45d6016617daa9210584"],
+  "requestType": "GRANT_ACCESS",
+  "requestedItems": [
+    {
+      "type": "ACCESS_PROFILE",
+      "id": "2c9180835d2e5168015d32f890ca1581",
+      "comment": "Requesting access profile for John Doe",
+      "clientMetadata": {
+        "requestedAppName": "splunk-log-access",
+        "requestedAppId": "2c91808f7892918f0178b78da4a305a1"
+      }
+    }
+  ],
+  "clientMetadata": {
+    "requestedAppId": "2c91808f7892918f0178b78da4a305a1",
+    "requestedAppName": "splunk-log-access"
+  }
+}
+{
+  "requestedFor": ["2c918084660f45d6016617daa9210584"],
+  "requestType": "GRANT_ACCESS",
+  "requestedItems": [
+    {
+      "type": "ACCESS_PROFILE",
+      "id": "2c9180835d2e5168015d32f890ca1581",
+      "comment": "Requesting access profile for John Doe",
+      "clientMetadata": {
+        "requestedAppName": "gitlab-dev-access",
+        "requestedAppId": "2c91808f7892918f0178b78da4a305a1"
+      }
+    }
+  ],
+  "clientMetadata": {
+    "requestedAppId": "2c91808f7892918f0178b78da4a305a1",
+    "requestedAppName": "gitlab-dev-access"
+  }
+}
+
+2024-12-02T13:31:54.155+05:30  INFO 28204 --- [automate-cte-onboarding] [nio-8080-exec-1] route4                                   : SailPoint response: SailPoint request successfully created.
+2024-12-02T13:31:54.155+05:30  INFO 28204 --- [automate-cte-onboarding] [nio-8080-exec-1] route3                                   : Sending ServiceNow request...
+2024-12-02T13:31:54.155+05:30  INFO 28204 --- [automate-cte-onboarding] [nio-8080-exec-1] route5                                   : ServiceNow API called, request created for: {
+  "requestedFor": "2c918084660f45d6016617daa9210584",
+  "requestType": "SOFTWARE_ACCESS",
+  "requestedItems": [
+    {
+      "type": "SOFTWARE_PACKAGE",
+      "id": "2c9180835d2e5168015d32f890ca1581",
+      "softwareName": "IntelliJ Idea",
+      "clientMetadata": {
+        "softwareName": "IntelliJ Idea"
+      }
+    },
+    {
+      "type": "SOFTWARE_PACKAGE",
+      "id": "2c9180835d2e5168015d32f890ca1582",
+      "softwareName": "Java 21",
+      "clientMetadata": {
+        "softwareName": "Java 21"
+      }
+    },
+    {
+      "type": "SOFTWARE_PACKAGE",
+      "id": "2c9180835d2e5168015d32f890ca1583",
+      "softwareName": "SQL Developer",
+      "clientMetadata": {
+        "softwareName": "SQL Developer"
+      }
+    }
+  ]
+}
+2024-12-02T13:31:54.155+05:30  INFO 28204 --- [automate-cte-onboarding] [nio-8080-exec-1] route5                                   : ServiceNow response: ServiceNow request successfully created for software access
